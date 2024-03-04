@@ -68,7 +68,9 @@ class BusinessUser(models.Model):
     full_name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=20, unique=True)
     priority = models.IntegerField(default=0, blank=True, unique=True)
-   
+    
+    def __str__(self):
+        return f"{self.user}-{self.full_name}-{self.phone_number}"
 class BusinessDetails(models.Model):
     business_id = models.BigAutoField(primary_key=True, editable=False)
     business_name = models.CharField(max_length=255)
@@ -82,6 +84,9 @@ class BusinessDetails(models.Model):
     category = TreeForeignKey(Category, on_delete=models.CASCADE)
     business_user = models.ForeignKey(BusinessUser, on_delete=models.CASCADE)
     
+    def __str__(self):
+       return f"{self.business_id}-{self.business_name}-{self.business_user}-{self.business_phone_number}"
+
 class OneTimePassword(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE)
     otp=models.CharField(max_length=6)
