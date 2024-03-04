@@ -5,6 +5,7 @@ django-mptt
 setuptools
 dj-database-url
 cachetools
+whitenoise
 certifi
 charset-normalizer
 Django
